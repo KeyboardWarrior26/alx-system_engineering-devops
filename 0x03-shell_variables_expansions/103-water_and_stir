@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Convert WATER from base 'water' to decimal
+w2d() {
+	echo "$1" | tr 'water' '01234'
+}
+
+# Convert STIR from base 'stir' to decimal
+s2d() {
+	echo "$1" | tr 'stir.' '01234'
+}
+
+# Convert decimal to base 'bestchol'
+d2b() {
+	# Decimal to base 9 with bestchol letters
+	n=$1
+	digits=bestchol
+	result=""
+	while [ "$n" -gt 0 ]; do
+		digit=$((n % 9))
+		result="${digits:$digit:1}$result"
+		n=$((n / 9))
+	done
+	echo "$result"
+}
+
+wdec=$(echo "ibase=5; $(w2d "$WATER")" | bc)
+sdec=$(echo "ibase=5; $(s2d "$STIR")" | bc)
+sum=$((wdec + sdec))
+
+d2b "$sum"
