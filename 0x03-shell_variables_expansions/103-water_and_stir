@@ -1,2 +1,2 @@
 #!/bin/bash
-ll
+echo "$(( $(echo $WATER | tr -d '.' | tr 'ewatribstlch.' '0123456789') + $(echo $STIR | tr -d '.' | tr 'ewatribstlch.' '0123456789') ))" | tr '0123456789' 'bestchol'
