@@ -1,6 +1,3 @@
 #!/bin/bash
-[ -z "$POWER" ] && exit 1
-[ -z "$DIVIDE" ] && exit 1
 echo $((POWER / DIVIDE))
-
 
