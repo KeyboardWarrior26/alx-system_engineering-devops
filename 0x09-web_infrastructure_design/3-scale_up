@@ -1,0 +1,23 @@
+Scaled Up Web Infrastructure for www.foobar.com
+
+Infrastructure Components:
+- 2 Load Balancers (HAProxy), configured in a cluster for High Availability
+- Web Server (Nginx) on its own server
+- Application Server (e.g., Gunicorn) on a separate server
+- Database Server (MySQL) isolated on its own server
+- Monitoring Clients installed on all servers
+
+Justification for Components:
+- Second Load Balancer: Ensures no single point of failure at the traffic entry point
+- Splitting components improves performance, fault tolerance, and scalability
+- Web server handles HTTP/HTTPS traffic and static files
+- App server executes backend application logic
+- Database server stores persistent data and reduces risk of overloading other services
+
+Application Server vs Web Server:
+- Web Server (e.g., Nginx): Handles incoming HTTP(S) requests, serves static files, proxies requests to app server
+- Application Server (e.g., Gunicorn): Executes application code, interacts with the database, and returns dynamic responses
+
+This architecture ensures modularity, easier scaling (horizontal or vertical), better fault isolation, and aligns with industry best practices.
+
+![Scaled Up Infrastructure](https://imgur.com/a/IyEnNXr)
