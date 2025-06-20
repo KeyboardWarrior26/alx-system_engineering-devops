@@ -1,0 +1,93 @@
+# Task 1: Distributed Web Infrastructure
+
+## Why We Added Each Component
+
+- **Second Server**: To separate concerns — one server handles the web server (Nginx), the other handles the application logic.
+- **Load Balancer (HAProxy)**: Distributes incoming traffic between multiple servers to improve availability and performance.
+- **Primary & Replica Database**: To ensure high availability and redundancy — if the primary fails, data still exists in the replica.
+
+---
+
+## Load Balancing Algorithm
+
+We use the **Round Robin** algorithm. It sends each new request to the next server in a rotating list. This helps distribute traffic evenly.
+
+---
+
+## Active-Active vs. Active-Passive
+
+- **Active-Active**: All servers are active and handle traffic simultaneously.
+- **Active-Passive**: One server is active, the other is on standby and only takes over if the first fails.
+
+In this setup, the **web/application servers are Active-Active** because they both handle requests at the same time.
+
+---
+
+## Primary-Replica Database
+
+- The **Primary** handles all write operations (insert/update/delete).
+- The **Replica** handles read-only queries and is synced from the primary.
+
+This improves performance and allows for failover if the primary goes down.
+
+---
+
+## Issues With This Infrastructure
+
+- **SPOF (Single Point of Failure)**: The Load Balancer is a SPOF — if it fails, users can't access the site.
+- **Security Issues**:
+  - No firewall to restrict malicious traffic.
+  - No HTTPS to encrypt communication between client and server.
+- **No Monitoring**: No tools to track performance, server health, or errors.
+
+---
+
+## Diagram Link
+
+[Click here to view the diagram](https://# Task 1: Distributed Web Infrastructure
+
+## Why We Added Each Component
+
+- **Second Server**: To separate concerns — one server handles the web server (Nginx), the other handles the application logic.
+- **Load Balancer (HAProxy)**: Distributes incoming traffic between multiple servers to improve availability and performance.
+- **Primary & Replica Database**: To ensure high availability and redundancy — if the primary fails, data still exists in the replica.
+
+---
+
+## Load Balancing Algorithm
+
+We use the **Round Robin** algorithm. It sends each new request to the next server in a rotating list. This helps distribute traffic evenly.
+
+---
+
+## Active-Active vs. Active-Passive
+
+- **Active-Active**: All servers are active and handle traffic simultaneously.
+- **Active-Passive**: One server is active, the other is on standby and only takes over if the first fails.
+
+In this setup, the **web/application servers are Active-Active** because they both handle requests at the same time.
+
+---
+
+## Primary-Replica Database
+
+- The **Primary** handles all write operations (insert/update/delete).
+- The **Replica** handles read-only queries and is synced from the primary.
+
+This improves performance and allows for failover if the primary goes down.
+
+---
+
+## Issues With This Infrastructure
+
+- **SPOF (Single Point of Failure)**: The Load Balancer is a SPOF — if it fails, users can't access the site.
+- **Security Issues**:
+  - No firewall to restrict malicious traffic.
+  - No HTTPS to encrypt communication between client and server.
+- **No Monitoring**: No tools to track performance, server health, or errors.
+
+---
+
+## Diagram Link
+
+[Click here to view the diagram](https://imgur.com/a/3yzSlyk)
