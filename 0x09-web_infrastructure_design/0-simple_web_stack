@@ -1,0 +1,55 @@
+# Task 0: Simple Web Stack
+
+## User Request Flow
+
+When a user types `www.foobar.com` into their browser, a **DNS query** is made to resolve the domain name to the server's IP address (`8.8.8.8`). The browser sends an HTTP request to that IP to access the website.
+
+---
+
+## Infrastructure Components
+
+### 🔹 Server
+A **server** is a physical or virtual machine that hosts the components required to run the website. In this case, it's a single server at IP `8.8.8.8`.
+
+### 🔹 Domain Name
+The domain name `foobar.com` makes the site accessible using a human-readable address rather than an IP. It's managed through DNS.
+
+### 🔹 DNS Record Type
+The `www` in `www.foobar.com` is a **subdomain**, and the DNS entry is an **A record** that maps it to the IP address `8.8.8.8`.
+
+### 🔹 Web Server (Nginx)
+The **Nginx web server** handles incoming HTTP requests from users. It serves static content and forwards dynamic requests to the application server.
+
+### 🔹 Application Server (Gunicorn)
+The **application server** processes business logic (e.g., Python code). It handles dynamic content, user sessions, and talks to the database.
+
+### 🔹 Application Files (Code Base)
+This contains the logic and structure of the website (e.g., HTML templates, Python code, routing logic, etc.).
+
+### 🔹 Database (MySQL)
+The **MySQL database** stores structured data such as user info, content, and site configurations.
+
+---
+
+## Communication Protocol
+
+The server uses **HTTP/HTTPS over TCP/IP** to communicate with the user's browser. HTTPS encrypts the traffic for security.
+
+---
+
+## Infrastructure Issues
+
+### ⚠️ Single Point of Failure (SPOF)
+Everything runs on one server—if it crashes, the whole website goes down.
+
+### ⚠️ Maintenance Downtime
+Updates or deployments often require restarting services, leading to temporary downtime.
+
+### ⚠️ No Scalability
+Cannot handle high traffic. There's no load balancing or horizontal scaling, so one server limits performance.
+
+---
+
+## Diagram Link
+
+[Click here to view the diagram](https://imgur.com/8P28b1W)
