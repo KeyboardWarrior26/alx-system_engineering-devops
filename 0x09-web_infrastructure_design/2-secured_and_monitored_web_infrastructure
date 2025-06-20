@@ -1,0 +1,26 @@
+Web Infrastructure for www.foobar.com (Secured and Monitored)
+
+Infrastructure:
+- Load Balancer (HAProxy) with SSL Certificate (HTTPS)
+- Web Server (Nginx) - Behind Firewall 2
+- App Server - Behind Firewall 3
+- MySQL Database - Dedicated
+- Monitoring clients on all servers (Sumo Logic/Prometheus)
+- Firewalls at entry points (3 total)
+
+Security:
+- HTTPS used to secure traffic
+- 3 firewalls for isolation and traffic control
+
+Monitoring:
+- Monitoring agents installed on each server
+- Metrics collected: CPU, RAM, disk, HTTP requests, SQL queries
+- Data sent to a centralized system for analysis and alerting
+- QPS monitored by filtering web server logs or using exporters
+
+Known Issues:
+- SSL termination at LB means internal traffic can be unencrypted — risky.
+- Single writable MySQL server = SPOF.
+- Servers with all components reduce modularity, scalability, and security.
+
+![Secured and Monitored Infrastructure](https://imgur.com/a/OqdY9Xp)
