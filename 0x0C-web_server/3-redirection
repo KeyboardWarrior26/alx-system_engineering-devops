@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Configures Nginx to redirect /redirect_me to a URL with 301 Moved Permanently
+
+# Create or modify the Nginx server block
+echo "server {
+    listen 80;
+    server_name _;
+
+    location / {
+        root /var/www/html;
+        index index.html;
+    }
+
+    # Redirect /redirect_me to another URL with a 301 Moved Permanently
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+}" | sudo tee /etc/nginx/sites-available/default > /dev/null
+
+# Test the Nginx configuration to ensure there are no errors
+sudo nginx -t
+
+# Reload Nginx to apply the changes
+sudo service nginx reload
+
