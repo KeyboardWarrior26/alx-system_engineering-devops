@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Installs Nginx and configures it to serve "Hello World!" on port 80
+
+# Update package list
+apt-get update -y
+
+# Install Nginx
+apt-get install nginx -y
+
+# Replace default index.html content with "Hello World!"
+echo "Hello World!" > /var/www/html/index.html
+
+# Start Nginx using service (since systemctl is not allowed)
+service nginx start
