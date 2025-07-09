@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Displays A record info for specified subdomains of a given domain
+
+get_subdomain_info() {
+  local full_domain=$1
+  dig "$full_domain" +short | awk -v sd="$full_domain" '
+    BEGIN { print "The subdomain " sd " is a A record and points to" }
+    NF { print $0 }
+  '
+}
+
+main() {
+  domain=$1
+  subdomain=$2
+
+  if [ -z "$subdomain" ]; then
+    for name in www lb-01 web-01 web-02; do
+      get_subdomain_info "$name.$domain"
+    done
+  else
+    get_subdomain_info "$subdomain.$domain"
+  fi
+}
+
+main "$@"
