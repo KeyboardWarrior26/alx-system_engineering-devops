@@ -1,0 +1,19 @@
+cat << 'EOF' > 0x10-https_ssl/100-redirect_http_to_https
+# Redirect all HTTP traffic to HTTPS
+frontend http_front
+    bind *:80
+    mode http
+    redirect scheme https code 301 if !{ ssl_fc }
+
+frontend https_in
+    bind *:443 ssl crt /etc/ssl/private/haproxy/haproxy.pem
+    mode http
+    default_backend webservers
+
+backend webservers
+    mode http
+    balance roundrobin
+    server web-01 54.237.96.158:80 check
+    server web-02 54.237.96.158:80 check
+EOF
+
